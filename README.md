@@ -51,3 +51,11 @@ colophon
 * All JavaScript files are packaged together with [RequireJS](http://requirejs.org/) and its [optimizer](http://requirejs.org/docs/optimization.html), and minified through [UglifyJS2](https://github.com/mishoo/UglifyJS2).
 
 
+history
+=======
+
+* 0.1 - Initial Release (Dec 2012)
+
+* 0.2 - Migration to Dojo gfx (Dec 2012)
+
+
