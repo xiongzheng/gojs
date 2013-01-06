@@ -2,6 +2,7 @@
 var dojoConfig;
 
 dojoConfig = {
+  cacheBust: new Date(),
   has: {
     "dojo-firebug": true
   },

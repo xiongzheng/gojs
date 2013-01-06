@@ -3,6 +3,7 @@
 dojoConfig =
 
   # get fresh resources (development)
+  cacheBust:new Date(),
 
   has:
     "dojo-firebug": true
