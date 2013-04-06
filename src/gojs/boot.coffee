@@ -1,5 +1,7 @@
 ((global) ->
 
+
+
   class _GoBoard
 
     constructor: (@container, @container_size, @board_size) ->      

@@ -1,4 +1,4 @@
-define ["dojox/gfx", "dojo/_base/lang", "dojo/dom"], (gfx, lang, dom) ->
+define ["dojox/gfx","dojox/gfx/utils", "dojo/_base/lang", "dojo/dom"], (gfx, utils, lang, dom) ->
 
   class Board
 
@@ -101,7 +101,7 @@ define ["dojox/gfx", "dojo/_base/lang", "dojo/dom"], (gfx, lang, dom) ->
       board_outline_length = cell_radius * (@board_size - 1)
       board_outline = group.createRect({ x: x, y: y, width: board_outline_length, height: board_outline_length }).setStroke({color: "black", width: 2})
 
-      
+
       click_detect_group = group.createGroup()
 
 
@@ -111,18 +111,61 @@ define ["dojox/gfx", "dojo/_base/lang", "dojo/dom"], (gfx, lang, dom) ->
         coord_y = board_size-1-(shape.shape.y - y + cell_radius / 2)/cell_radius
 
         if get_this.virtual_board[coord_y][coord_x] is null
+
+          stone = group.createGroup()
+
           # place stone
           x_1 = shape.shape.x+circle_radius
           y_1 = shape.shape.y+circle_radius
-          circle = group.createCircle({ cx: x_1, cy: y_1, r:circle_radius }).setFill("green").setStroke("black")
+          ###
+          circle_fg = stone.createCircle({ cx: x_1, cy: y_1, r:circle_radius }).setFill(
+            type: "radial"
+            cx: x_1 #+ circle_radius*0.2
+            cy: y_1 #+ circle_radius*0.3
+            r: circle_radius*1.2
+            colors: [
+              offset: 0
+              color: "#F0F0F0"
+            ,
+              offset: 0.25
+              color: "#E8E8E8"
+            ,
+              offset: 0.5
+              color: "#E0E0E0"
+            ,      
+              offset: 0.75
+              color: "#D8D8D8"
+            ,                        
+              offset: 0.9
+              color: "#989898"
+            ]
+          ).setStroke("#989898")
+          ###
+          
 
+          circle_fg = stone.createCircle({ cx: x_1, cy: y_1, r:circle_radius }).setFill(
+            type: "radial"
+            cx: x_1 + circle_radius*0.2
+            cy: y_1 #+ circle_radius*0.3
+            r: circle_radius*1.4
+            colors: [
+              offset: 0
+              color: "#484848"
+            ,      
+              offset: 0.9
+              color: "#000"
+            ]
+          )#.setStroke("#484848")
+          
+
+          #circle_fg = stone.createCircle({ cx: x_1, cy: y_1, r:circle_radius }).setFill("#383838").setStroke("#000")
           # remember placed stone
-          get_this.virtual_board[coord_y][coord_x] = circle
+          get_this.virtual_board[coord_y][coord_x] = stone
 
           click_detect_group.moveToFront()
         else
           console.log "cannot place stone!"
-        
+
         return
 
 
@@ -175,7 +218,7 @@ define ["dojox/gfx", "dojo/_base/lang", "dojo/dom"], (gfx, lang, dom) ->
           x_1 = x - cell_radius / 2 + cell_radius * i
           y_1 = y - cell_radius / 2 + cell_radius * j
 
-          click = click_detect_group.createRect({ x: x_1, y: y_1, width: cell_radius, height: cell_radius }).setFill([0,0,255,0.5]).moveToFront()
+          click = click_detect_group.createRect({ x: x_1, y: y_1, width: cell_radius, height: cell_radius }).setFill([0,0,255,0.0]).moveToFront()
           @myConnect(click, "onclick", handle_click)
 
           j++

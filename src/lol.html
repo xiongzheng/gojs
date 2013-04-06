@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Development test</title>
+</head>
+<body>
+    <h1 id="greeting">Hellodd</h1>
+<div id="surfaceElement"></div>
+<div id="moo"></div>
+
+<script type="text/javascript" src="lib/raphael.js"></script>
+
+
+
+<script type="text/javascript">
+/*require(['gojs/main'], function(GoBoard) {
+
+var lol = GoBoard("surfaceElement", 500,19);
+
+});*/
+  var paper, stone_bg, stone_fg;
+  var paper = Raphael("moo", 250, 250);
+  stone_bg = paper.circle(125, 125, 125);
+  stone_bg.attr('fill', '#fff');
+  stone_bg.attr('stroke-width', '0');
+  stone_fg = paper.circle(125, 125, 125);
+  stone_fg.attr('fill-opacity', 1);
+  stone_fg.attr('fill', 'r(0.75,0.75)#fff-#A0A0A0');
+  stone_fg.attr('stroke-opacity', 0.3);
+  stone_fg.attr('stroke-width', '1.1');
+
+
+</script>
+</body>
+</html>
